@@ -1,0 +1,352 @@
+      /* ===== 星のきらめき演出 ===== */
+      body.star-flash::before,
+      body.star-flash::after {
+          animation: starFlash 0.9s ease-out forwards;
+      }
+
+      @keyframes starFlash {
+          0% {
+              opacity: 0.85;
+              filter: brightness(1) drop-shadow(0 0 1px rgba(255, 255, 255, 0.25));
+          }
+
+          40% {
+              opacity: 1;
+              filter: brightness(2.2) drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+          }
+
+          100% {
+              opacity: 0.85;
+              filter: brightness(1) drop-shadow(0 0 1px rgba(255, 255, 255, 0.25));
+          }
+      }
+
+      /* ===== イントロモーダル ===== */
+      .intro-modal {
+          position: fixed;
+          inset: 0;
+          background: rgba(5, 15, 25, 0.75);
+          backdrop-filter: blur(6px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999;
+      }
+
+      .intro-card {
+          background: rgba(10, 28, 45, 0.85);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 18px;
+          padding: 32px 36px;
+          max-width: 420px;
+          text-align: center;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      .intro-card h2 {
+          margin-top: 0;
+          font-family: "Noto Serif JP", serif;
+          letter-spacing: 0.05em;
+      }
+
+      .intro-card ul {
+          text-align: left;
+          line-height: 1.8;
+          padding-left: 1.2em;
+          margin: 20px 0 28px;
+      }
+
+      .intro-card button {
+          font-family: "Allura", cursive;
+          font-size: 26px;
+          padding: 10px 28px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.08);
+          color: #fff;
+          cursor: pointer;
+          transition: 0.25s;
+      }
+
+      .intro-card button:hover {
+          background: rgba(255, 255, 255, 0.18);
+          transform: translateY(-1px);
+      }
+
+      /* フェードアウト用 */
+      .intro-hide {
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.6s ease;
+      }
+
+      :root {
+          --bg-top: #0b3d62;
+          --bg-mid: #0a385a;
+          --bg-btm: #0a2f4a;
+
+          --text: #f4f7ff;
+          --muted: rgba(244, 247, 255, 0.78);
+          --line: rgba(244, 247, 255, 0.28);
+
+          --card: rgba(10, 28, 45, 0.55);
+          --card2: rgba(10, 28, 45, 0.35);
+          --shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      body {
+          margin: 0;
+          color: var(--text);
+          font-family:
+              "Noto Sans JP",
+              system-ui,
+              -apple-system,
+              "Segoe UI",
+              sans-serif;
+          background:
+              radial-gradient(1200px 600px at 50% 20%,
+                  rgba(255, 255, 255, 0.1),
+                  transparent 55%),
+              linear-gradient(180deg,
+                  var(--bg-top) 0%,
+                  var(--bg-mid) 45%,
+                  var(--bg-btm) 100%);
+          min-height: 100vh;
+          overflow-x: hidden;
+      }
+
+      /* 星をCSSだけで作る（軽量） */
+      body::before,
+      body::after {
+          content: "";
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: -1;
+          background-repeat: repeat;
+          opacity: 0.85;
+      }
+
+      body::before {
+          background-image:
+              radial-gradient(circle,
+                  rgba(255, 255, 255, 0.85) 0 1px,
+                  transparent 2px),
+              radial-gradient(circle,
+                  rgba(255, 230, 140, 0.75) 0 1px,
+                  transparent 2px);
+          background-size:
+              140px 140px,
+              220px 220px;
+          background-position:
+              0 0,
+              50px 90px;
+          filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.25));
+      }
+
+      body::after {
+          background-image: radial-gradient(circle,
+                  rgba(255, 255, 255, 0.55) 0 1px,
+                  transparent 2px);
+          background-size: 90px 90px;
+          background-position: 20px 40px;
+          opacity: 0.55;
+      }
+
+      /* 画面上部のヘッダー（画像っぽい中心タイトル） */
+      header {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 48px 20px 18px;
+          text-align: center;
+          position: relative;
+      }
+
+      .eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 32px;
+          font-family: "ScriptinaPro", cursive;
+          letter-spacing: 0.04em;
+          font-weight: 600;
+          line-height: 1.6;
+          color: var(--muted);
+          font-size: 30px;
+          margin-bottom: 12px;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+          /* text-transform: uppercase; */
+          opacity: 0.9;
+          position: relative;
+      }
+
+      .eyebrow::before,
+      .eyebrow::after {
+          content: "";
+          height: 1px;
+          width: 84px;
+          background: var(--line);
+          display: inline-block;
+      }
+
+      h1 {
+          margin: 18px 0 10px;
+          font-family: "Noto Serif JP", serif;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          font-size: clamp(34px, 5vw, 56px);
+          line-height: 1.25;
+          text-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .sub {
+          margin: 0;
+          font-family: "Noto Serif JP", serif;
+          font-weight: 400;
+          color: rgba(244, 247, 255, 0.92);
+          letter-spacing: 0.1em;
+          font-size: clamp(18px, 2.6vw, 30px);
+          line-height: 1.55;
+      }
+
+      .org {
+          margin: 22px 0 0;
+          color: rgba(244, 247, 255, 0.82);
+          letter-spacing: 0.08em;
+          font-size: 16px;
+      }
+
+      /* メイン：本文カード */
+      main {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 18px 20px 80px;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+      }
+
+      .panel {
+          background: linear-gradient(180deg, var(--card) 0%, var(--card2) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 18px;
+          box-shadow: var(--shadow);
+          backdrop-filter: blur(8px);
+          overflow: hidden;
+      }
+
+      .panel-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 14px 18px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          color: rgba(244, 247, 255, 0.84);
+          font-size: 13px;
+          letter-spacing: 0.06em;
+      }
+
+      .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 10px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          background: rgba(255, 255, 255, 0.06);
+          color: rgba(244, 247, 255, 0.9);
+          font-size: 12px;
+          white-space: nowrap;
+      }
+
+      /* ここが文章が積まれていく場所 */
+      #container {
+          padding: 18px 18px 22px;
+      }
+
+      p {
+          margin: 0 0 14px 0;
+          word-break: break-word;
+          color: rgba(244, 247, 255, 0.92);
+          font-size: 18px;
+          line-height: 1.9;
+          letter-spacing: 0.02em;
+      }
+
+      /* ふわっと出す */
+      .fade-in {
+          animation: fade 0.28s ease-out both;
+      }
+
+      @keyframes fade {
+          from {
+              opacity: 0;
+              transform: translateY(4px);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* 下部に「読み込み中」っぽい雰囲気 */
+      .panel-foot {
+          padding: 12px 18px 16px;
+          color: rgba(244, 247, 255, 0.72);
+          font-size: 12px;
+          letter-spacing: 0.06em;
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hint {
+          opacity: 0.9;
+      }
+
+      /* 右下のスクロール誘導（任意） */
+      .scroll-tip {
+          position: fixed;
+          right: 14px;
+          bottom: 14px;
+          padding: 10px 12px;
+          border-radius: 12px;
+          background: rgba(0, 0, 0, 0.22);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          color: rgba(244, 247, 255, 0.88);
+          font-size: 12px;
+          letter-spacing: 0.06em;
+          backdrop-filter: blur(8px);
+          user-select: none;
+      }
+
+      /* モバイル微調整 */
+      @media (max-width: 520px) {
+
+          .eyebrow::before,
+          .eyebrow::after {
+              width: 48px;
+          }
+
+          p {
+              font-size: 16px;
+              line-height: 1.85;
+          }
+
+          header {
+              padding-top: 38px;
+              padding: 64px 20px 32px;
+          }
+      }
+
+      @font-face {
+          font-family: "ScriptinaPro";
+          src: url("../fonts/ScriptinaPro.otf") format("opentype");
+          font-weight: normal;
+          font-style: normal;
+      }
