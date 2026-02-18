@@ -4,35 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>銀河鉄道の夜 - 無限タイピング</title>
-
-    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&family=Noto+Serif+JP:wght@400;600&family=Allura&display=swap"
       rel="stylesheet"
     />
-
-    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body onload="draw()" style="margin: 0"></body>
-  <canvas id="canvas"></canvas>
-  <!-- スタート説明モーダル -->
-  <div id="intro-modal" class="intro-modal">
-    <div class="intro-card">
-      <h2>無限タイピングへようこそ</h2>
-
-      <ul>
-        <li>表示される文章（銀河鉄道の夜）をタイプします</li>
-        <li>タイプの正誤判定は行いません</li>
-        <li>スクロールはスペースキーで行えます</li>
-        <li>文章は無限に出現します</li>
-      </ul>
-
-      <button id="start-btn">Start Typing</button>
-    </div>
-  </div>
-
   <body>
+    <!-- スタート説明モーダル -->
+    <div id="intro-modal" class="intro-modal">
+      <div class="intro-card">
+        <h2>無限タイピングへようこそ</h2>
+        <ul>
+          <li>表示される文章（銀河鉄道の夜）をタイプします</li>
+          <li>タイプの正誤判定は行いません</li>
+          <li>スクロールはスペースキーで行えます</li>
+          <li>文章は無限に出現します</li>
+        </ul>
+        <button id="start-btn">Start Typing</button>
+      </div>
+    </div>
+
+    <!-- 流れ星要素（script.jsが参照しているので追加） -->
+    <div id="shooting-star"></div>
+
     <header>
       <div class="eyebrow">Night on the Galactic Railroad</div>
       <h1>銀河鉄道の夜 - 無限タイピング</h1>
@@ -44,9 +39,7 @@
           <div>Words Along the Milky Way</div>
           <div class="badge">正誤判定なし / 無限追加</div>
         </div>
-
         <div id="container"></div>
-
         <div class="panel-foot">
           <div class="hint">下へスクロールすると、文章が追加されます。</div>
           <div id="counter">0 lines</div>
@@ -54,7 +47,6 @@
       </section>
     </main>
 
-    <!-- JS（module重要） -->
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>
